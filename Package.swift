@@ -3,12 +3,12 @@ import PackageDescription
 
 let package = Package(
     name: "GoogleCastSPM",
+    defaultLocalization: "en",
     platforms: [.iOS(.v14)],
     products: [
         .library(name: "GoogleCastSPM", targets: ["GoogleCastWrapper"])
     ],
     targets: [
-        // Binary target: replace URL and checksum with your release asset
         .binaryTarget(
             name: "GoogleCast",
             url: "https://github.com/mrx01011/GoogleCast-SPM/releases/download/v1.0.0/GoogleCast.xcframework.zip",
@@ -19,9 +19,9 @@ let package = Package(
             name: "GoogleCastWrapper",
             dependencies: ["GoogleCast"],
             resources: [
-                .process("Resources/GoogleCastCoreResources.bundle"),
-                .process("Resources/GoogleCastUIResources.bundle"),
-                .process("Resources/MaterialDialogs.bundle")
+                .copy("Resources/GoogleCastCoreResources.bundle"),
+                .copy("Resources/GoogleCastUIResources.bundle"),
+                .copy("Resources/MaterialDialogs.bundle")
             ],
             linkerSettings: [
                 .linkedFramework("AVFoundation"),
